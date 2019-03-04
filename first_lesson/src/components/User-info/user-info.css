@@ -1,0 +1,17 @@
+.user-info{
+    display: flex; 
+    align-items: center;
+    padding: 20px;
+    background-color: #ccc;
+}
+.user-description{
+    margin-left: 20px;
+    font-size: 1.5rem;
+}
+.user-avatar{
+    max-width: 100%;
+    display: block;
+    height: auto;
+    width: 100px;
+    border-radius: 50%;
+}

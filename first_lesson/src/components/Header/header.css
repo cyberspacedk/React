@@ -1,0 +1,9 @@
+.Header{
+    background-color: rgb(34, 131, 5);
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: monospace;
+    color: #fff;
+    padding: 0.25rem;
+    text-align: center;
+}

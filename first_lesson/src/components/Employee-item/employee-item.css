@@ -1,0 +1,15 @@
+.employee-item{
+    background-color: rgba(204, 204, 204, 0.205);
+    margin-bottom: 7px;
+    padding: 10px;
+}
+
+.employee-name{ 
+font-weight: 700;
+}
+.employee-surname{ 
+font-style: italic;
+}
+.employee-position{
+    color: #ccc;
+}

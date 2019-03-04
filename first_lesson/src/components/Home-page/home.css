@@ -1,0 +1,5 @@
+.home{
+    background-color: rgb(0, 31, 131);
+    border: 1px solid red;
+    flex-basis: 50%;
+}

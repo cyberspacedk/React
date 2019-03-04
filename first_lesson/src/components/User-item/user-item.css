@@ -1,0 +1,15 @@
+.user-item{
+    list-style: none;
+    margin: 10px 0;
+    background-color: rgba(204, 204, 204, 0.116);
+    padding: 15px;
+    box-shadow: 0 0 4px 0px #fff;
+}
+.item-title{
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.item-text{
+    color: #ccc;
+}

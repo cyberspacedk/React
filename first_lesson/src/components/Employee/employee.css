@@ -1,0 +1,5 @@
+.employee{
+    background-color: rgba(206, 111, 4, 0.822);
+    border: 1px solid red;
+    flex-basis: 50%; 
+}
