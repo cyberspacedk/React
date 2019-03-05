@@ -1,10 +1,4 @@
-Snippets info
-Every space inside { } and ( ) means that this is pushed into next line :) $ represent each step after tab.
-
-
-# //////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-
+  
 - Basic Methods
 
 #### :::::::::::::::::::::: Prefix	Method :::::::::::::::::::::: 
@@ -58,8 +52,7 @@ cmmb→	comment block
 cp→	const { } = this.props
 
 cs→	const { } = this.state
-```
-# ///////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+``` 
 
 - React
 
@@ -127,8 +120,7 @@ fref→	const ref = React.createRef()
 
 bnd→	this.methodName = this.methodName.bind(this)
 
-``` 
-# ///////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+```  
 
 - PropTypes
 
@@ -168,8 +160,7 @@ ptany→	PropTypes.any
 ptypes→	static propTypes = {}
 
 ```
-# ///////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+  
 - React Components
 
 ### ----------------- rcc -----------------
@@ -372,11 +363,7 @@ const $1 = memo(function $1(props) {
 $1.propTypes = {}
 
 export default $1
-```
-
-# ///////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-
+``` 
 
 - GraphQL
 
@@ -388,11 +375,7 @@ expgql
 export default compose(graphql($1, { name: $2 }))($3)
 
 ```
-
-# ///////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ 
-
-
-
+ 
 - Console
 
 #### :::::::::::::::::::::: Prefix	Method ::::::::::::::::::::::
@@ -412,12 +395,7 @@ ctr→	console.trace(object)
 cwa→	console.warn
 cin→	console.info
 ```
-
-
-# ///////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-
-
+  
 - Redux
 
 #### :::::::::::::::::::::: Prefix	Method ::::::::::::::::::::::
@@ -463,10 +441,7 @@ const mapStateToProps = state => ({})
 
 const mapDispatchToProps = {}
 ```
-
-
-# ///////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
+ 
 
 - React Native
 
@@ -479,9 +454,7 @@ imrn→	import { $1 } from 'react-native'
 rnstyle→	const styles = StyleSheet.create({})
 
 ```
-
-
-# ///////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ 
 
 - React Native Components
 ### rnc
