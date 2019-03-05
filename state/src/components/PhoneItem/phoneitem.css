@@ -1,0 +1,41 @@
+.card {
+    background-color: #fff;
+    flex-basis: 20%;
+    padding: 1rem;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    margin-bottom: 1rem;
+}
+.card__img {
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    height: 200px;
+}
+.card__rewiew {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    text-align: right;
+    margin-bottom: 1rem;
+    height: 100px;
+}
+.card__title {
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: 700;
+    height: 45px;
+}
+.buy {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.buy img {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+}
+.price {
+    font-weight: 700;
+}

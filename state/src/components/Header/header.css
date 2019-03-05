@@ -1,0 +1,25 @@
+.header {
+    padding: 1rem;
+    background-color: #fff;
+    margin-bottom: 1rem;
+    display: flex;
+}
+.cart {
+    font-weight: 700;
+    text-align: right;
+    cursor: pointer; 
+}
+.count-phones{
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+    border-radius: 50%;
+    line-height: 20px;
+}
+.margin{
+    margin-left: auto;
+}
