@@ -1,0 +1,8 @@
+.todo-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    background-color: #6d124e;
+    padding: 10px; 
+    margin: auto;
+}

@@ -1,0 +1,13 @@
+form {
+    display: flex;
+}
+input{
+    padding: 10px;
+}
+[type="text"]{
+    flex-basis: 70%;
+}
+[type="submit"]{
+    width: 28%;
+    margin-left: 2%;
+}

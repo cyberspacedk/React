@@ -1,0 +1,11 @@
+.statusButton  {
+    display: flex;
+    justify-content:flex-end;
+
+}
+.statusButton button {
+    flex-basis:15%;
+    margin: 25px 0 10px 5px;
+    padding: 5px;
+    font-size: 12px;
+}
