@@ -3,6 +3,7 @@ import "./app.css";
 import Header from '../Header/Header';
 import PhoneList from '../PhoneList/PhoneList';
 import Cart from '../Cart/Cart';
+import {Form} from '../Form/Form';
 
 export default class App extends Component { 
  
@@ -114,7 +115,12 @@ export default class App extends Component {
       }, 
   ],
 		cart : [],
-		showCart : false ,
+        showCart : false ,
+        text : '',
+        email: '',
+        password: '',
+        filter: '',
+        filtered : [],
   }
   
 addToCart = (evt)=> {
@@ -127,9 +133,17 @@ addToCart = (evt)=> {
 }
 
 removeToCart = ({target})=> { 
-	this.setState((prevState) => ({
-		cart :  prevState.cart.filter(elem => elem.title !== target.dataset.name)
-	})) 
+ 
+let arrCopy = [...this.state.cart];  
+let idx = arrCopy.findIndex(el => el.title === target.dataset.name);  
+
+ if(idx >= 0) {
+    arrCopy.splice(idx,1)
+ };  
+
+this.setState({
+    cart :  arrCopy,
+})
 }
 
 showCart = ()=> {
@@ -138,15 +152,66 @@ showCart = ()=> {
 	}))
 }
 
-render() {
-	const {phones, cart, showCart} = this.state;
+componentDidMount(){
 
+    this.setState({
+        filtered :  [...this.state.phones],
+    })
+}
+
+inputChange = ({target})=> {  
+    this.setState({
+        [target.name] : target.value,
+    })
+}
+submitForm = (evt) => {
+		evt.preventDefault();
+		let dataUser = {
+			login : this.state.text,
+			email : this.state.email,
+			password : this.state.password,
+		} 
+
+		this.setState({
+			text : '',
+			email : '',
+			password : '',
+		})
+}
+
+
+filterPhone = ({target})=>{
+    const copyPhones = [...this.state.phones];
+
+    this.setState({ 
+        filtered: this.state.filtered.length >=0 ? 
+        copyPhones.filter(elem=> elem.title.includes(target.value)) : copyPhones
+    })
+}
+
+
+
+render() {
+	const {phones, cart, showCart, text, filtered, email, password} = this.state;
+ 
 	return (
-			<Fragment>
-				<Header cart={cart} showCart={this.showCart}/>
-				<Cart cart={cart} show={showCart} showCart={this.showCart} removeCart={this.removeToCart}/>
-				<PhoneList phones={phones} addToCart={this.addToCart}/> 
-			</Fragment>
+		<Fragment>
+			<Header cart={cart} showCart={this.showCart}/>
+
+			<Form text={text} 
+						filter={this.filterPhone} 
+						submit={this.submitForm}
+						inputChange={this.inputChange} 
+						email={email} 
+						password={password}/>
+
+			<Cart cart={cart} 
+						show={showCart} 
+						showCart={this.showCart} 
+						removeCart={this.removeToCart}/>
+						
+			<PhoneList phones={filtered} addToCart={this.addToCart}/> 
+		</Fragment>
 	);
 }
 }
