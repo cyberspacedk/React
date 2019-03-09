@@ -13,19 +13,21 @@ const List = ({ filter, todolist, deleteItem, editMode , cancelEdit ,editNote, s
     <ul className="todo-list">
 
       {filterItem(todolist, filter ).map(elem => (
+
         <Item key={elem.id}
-					text={elem.text}
-					edit={elem.edit}
-					id={elem.id}
-					isDone={elem.complete}
-          editMode={editMode}
-					deleteItem={deleteItem}
-					cancelEdit={cancelEdit}
-					editNote={editNote}
-					saveNote={saveNote}
-					editInput={editInput}
-					doneItem={doneItem} 
-        /> 
+							text={elem.text}
+							edit={elem.edit}
+							id={elem.id}
+							isDone={elem.complete}
+							editMode={editMode}
+							deleteItem={deleteItem}
+							cancelEdit={cancelEdit}
+							editNote={editNote}
+							saveNote={saveNote}
+							editInput={editInput}
+							doneItem={doneItem} 
+						/> 
+						
       ))}
     </ul>
   );

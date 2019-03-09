@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const Iteminput = ({ editMode, text, cancelEdit, id, editNote, saveNote, editInput}) => {
+const Iteminput = ({ cancelEdit, id, editNote, saveNote, editInput}) => {
   return (
 
 
