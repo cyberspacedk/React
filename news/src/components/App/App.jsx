@@ -55,7 +55,7 @@ class App extends Component {
       .then(response=> response.json())
       .then(data=> {   
         const fullContent = data.response.content.blocks.body[0].bodyTextSummary;
-        const sameArticle = this.state.news.map(elem => elem.id == target.dataset.id ? {...elem, fullText : fullContent , toggle: !elem.toggle } : elem);
+        const sameArticle = this.state.news.map(elem => elem.id == target.dataset.id ? {...elem, fullText : fullContent } : elem);
          
         this.setState({
           news : [...sameArticle],
