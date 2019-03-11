@@ -1,0 +1,28 @@
+.houseimage{
+    display: block; 
+    width: 300px;
+    height: 200px;
+}
+
+.house_price{
+    background-color: rgb(245, 70, 70);
+    padding: 5px;
+}
+.house_area{
+    background-color: rgb(101, 197, 11);
+    padding: 5px;
+}
+.house_address{
+    background-color: rgb(77, 14, 56);
+    padding: 5px;
+}
+.absolute_price{
+    position: relative;
+}
+.price{
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    color: red;
+    font-weight: 700;
+}

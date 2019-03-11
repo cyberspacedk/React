@@ -1,0 +1,6 @@
+.houseitem{
+    flex-basis: 300px;
+    margin: 20px;
+    box-shadow: 0 0 5px 2px #ccc;
+    list-style: none;
+}
