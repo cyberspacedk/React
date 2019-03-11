@@ -1,0 +1,30 @@
+.list-news p {
+    padding: 10px; 
+}
+
+.list-news li .article-extend{
+    background-color: rgb(63, 63, 63);
+    color: #fff; 
+    margin: 10px 0; 
+    
+  }
+  .article-active{
+    background-color: rgba(53, 53, 233, 0.959);
+  }
+  .list-news li {
+      position: relative;
+  }
+  .arrow { 
+      position: absolute;
+      top: 10px;
+      right: 10px; 
+      transform: rotate(0deg); 
+      text-align: center;
+      font-weight: 700;
+  }
+
+  .arrow-active{
+    transform: rotate(180deg);
+    color: #fff;
+
+  }

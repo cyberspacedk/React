@@ -1,0 +1,33 @@
+.pagination-box{
+    width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0;
+}
+.pagination-controls{
+    flex-basis: 25%
+}
+.current-page{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border: 2px solid #000;
+}
+.pagination-box button {
+    border:none;
+    outline: none;
+    background-color: #000;
+    padding: 7px 0;
+    color: #fff; 
+}
+.pagination-box button:hover{
+    background-color: rgba(0, 0, 0, 0.726);
+}
+.pagination-box button:disabled{
+    background-color: red;
+}
+.total-page{
+    padding: 5px;
+    font-size: 12px;
+}

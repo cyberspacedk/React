@@ -5,7 +5,7 @@ import './listofnews.css';
 
 const Listofnews = ({news, extend}) => {
   return (
-    <ul>
+    <ul className="list-news">
       {news.map(elem => (
 
         <ItemNews title={elem.webTitle} key={elem.id} id={elem.id} full={elem.fullText} extend={extend} toggle={elem.toggle}/> 
