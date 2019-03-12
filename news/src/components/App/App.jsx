@@ -70,9 +70,8 @@ class App extends Component {
     }))
 }
 
-  handleCurrentPage = async({target})=>{
-  
-
+  handleCurrentPage = async({target})=>{ 
+    
   await this.setState({
     currentPage: target.value,
     error: false,

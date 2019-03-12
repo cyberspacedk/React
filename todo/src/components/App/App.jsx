@@ -3,7 +3,11 @@ import "./app.css";
 import Header from "../Header/Header";
 import Create from "../Create/Create";
 import List from "../List/List";
-import Status from '../Status/Status'
+import Status from '../Status/Status'; 
+import Nav from '../Nav/Nav';
+import {Switch, Route} from 'react-router-dom';
+
+
 
 {
   /* 
@@ -116,6 +120,7 @@ export default class App extends Component {
       <div className="todo-wrapper">
 
         <Header />
+				<Nav />
 				<Status showDoneItem={this.showDoneItem}
 								showAllItem={this.showAllItem}
 								showActiveItem={this.showActiveItem}
@@ -125,19 +130,53 @@ export default class App extends Component {
 								submitForm={this.submitForm}
 								createNote={this.createNote}
         />
+				
+        <Switch>
+				<Route path='/' exact render={()=> <List todolist={todolist} 
+																											deleteItem={this.deleteItem}
+																											editMode={this.editMode}
+																											cancelEdit={this.cancelEdit} 
+																											editNote={this.editNote}
+																											saveNote={this.saveNote}
+																											editInput={editInput}
+																											doneItem={this.doneItem}
+																											 />} /> 
 
-				<List todolist={todolist} 
-							deleteItem={this.deleteItem}
-							editMode={this.editMode}
-							cancelEdit={this.cancelEdit} 
-							editNote={this.editNote}
-							saveNote={this.saveNote}
-							editInput={editInput}
-							doneItem={this.doneItem}
-							filter={filter}
-							/>
+         <Route path='/all'  render={()=> <List todolist={todolist} 
+																											deleteItem={this.deleteItem}
+																											editMode={this.editMode}
+																											cancelEdit={this.cancelEdit} 
+																											editNote={this.editNote}
+																											saveNote={this.saveNote}
+																											editInput={editInput}
+																											doneItem={this.doneItem}
+																											filter={'null'} />} /> 
+  
+         <Route path='/done' render={()=> <List todolist={todolist} 
+																											deleteItem={this.deleteItem}
+																											editMode={this.editMode}
+																											cancelEdit={this.cancelEdit} 
+																											editNote={this.editNote}
+																											saveNote={this.saveNote}
+																											editInput={editInput}
+																											doneItem={this.doneItem}
+																											filter={true} />} /> 
 
-      </div>
+         <Route path='/in-progress' render={()=> <List todolist={todolist} 
+																											deleteItem={this.deleteItem}
+																											editMode={this.editMode}
+																											cancelEdit={this.cancelEdit} 
+																											editNote={this.editNote}
+																											saveNote={this.saveNote}
+																											editInput={editInput}
+																											doneItem={this.doneItem}
+																											filter={false} />} />  
+        </Switch>
+
+			 
+
+				 
+      </div> 
     );
   }
 }

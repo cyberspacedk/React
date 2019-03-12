@@ -6,8 +6,7 @@ const Status = ({showDoneItem, showAllItem, showActiveItem}) => {
     <div className="statusButton">
         <button onClick={showAllItem}>All</button>
         <button onClick={showDoneItem}>Complete</button>
-        <button onClick={showActiveItem}>Uncomplite</button>
-      
+        <button onClick={showActiveItem}>Uncomplite</button> 
     </div>
   )
 } 
