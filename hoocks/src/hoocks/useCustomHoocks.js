@@ -13,4 +13,6 @@ const useFetch =(url)=>{
 
   return data;
 }
+
+
 export default  useFetch;
