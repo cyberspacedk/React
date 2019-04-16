@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import UserTable from "../UserTable/UserTable";
 import Form from "../Form/Form";
+import Avatar from '../Picture/UserAvatar'; 
 
 const App = () => {
   const userData = [
@@ -43,6 +44,7 @@ const deleteUser = e => {
         <div className="flex-large">
           <h2>Add user</h2>
           <Form add={addUser}/>
+          <Avatar />
         </div>
 
         <div className="flex-large">
