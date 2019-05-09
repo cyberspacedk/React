@@ -1,0 +1,19 @@
+{
+  "name": "graph_ql",
+  "version": "1.0.0",
+  "description": "graphQL - язык для взыимодейтсвия с сервером для получения данных",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-graphql": "^0.8.0",
+    "graphql": "^14.3.0",
+    "nodemon": "^1.19.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
