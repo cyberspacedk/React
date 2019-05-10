@@ -1,5 +1,6 @@
 .Palette{
   height: 100vh;
+  font-family: Roboto;
 }
 .Palette-colors{
   height: 90%;
