@@ -25,6 +25,7 @@ class Palette extends Component {
       <ColorBox
         background={color[format]}
         name={color.name} 
+        isShowUrl={true}
         moreUrl={`/palette/${id}/${color.id}`}
       />
     ));
