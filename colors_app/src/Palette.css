@@ -1,8 +1,22 @@
 .Palette{
   height: 100vh;
   font-family: Roboto;
+  display: flex;
+  flex-direction: column;
 }
-.Palette-colors{
-  height: 90%;
+.palette-colors{
+  height: 87vh;
 }
- 
+.palette-footer{
+  background-color: white;
+height: 5vh;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+font-weight: bold;
+}
+
+.emoji{
+  font-size: 1.5rem;
+
+}
