@@ -3,7 +3,7 @@ import { withStyles } from "@material-ui/styles";
 
 const styles = {
   root: {
-    backgroundColor: "white",
+    backgroundColor: "white", 
     borderRadius: "5px",
     padding: ".5rem",
     position: "relative",
@@ -13,9 +13,12 @@ const styles = {
       cursor: "pointer"
     }
   },
-  color: {
-    backgroundColor: "gray",
-
+  colors: {
+    backgroundColor: "#dae1e4", 
+    height: '150px',
+    width: '100%',
+    borderRadius: '5px',
+    overflow: 'hidden'
   },
   title: {
     display: "flex",
@@ -24,20 +27,35 @@ const styles = {
     color: "black",
     paddingTop: ".5rem",
     fontSize: "1rem",
-    position: "relative",
+    position: "relative"
   },
   emoji: {
     marginLeft: ".5rem",
     fontsize: "1.5rem"
+  },
+  minicolor: {
+    width: "20%",
+    height: "25%",
+    display: 'inline-block',
+    margin: '0 auto',
+    position: 'relative',
+    marginBottom: '-4px',
   }
 };
 
 const MiniPalette = props => {
   console.log(props);
-  const { classes, paletteName, emoji } = props;
+  const { classes, paletteName, emoji, colors } = props;
+  const miniColorBoxes = colors.map(color => (
+    <div
+      className={classes.minicolor}
+      style={{ background: color.color }}
+      key={color.name}
+    />
+  ));
   return (
     <div className={classes.root}>
-      <div className={classes.colors} />
+      <div className={classes.colors}>{miniColorBoxes}</div>
       <h5 className={classes.title}>
         {paletteName} <span className={classes.emoji}>{emoji}</span>
       </h5>
