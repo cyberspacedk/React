@@ -1,16 +1,18 @@
-import React, {useState}from "react";
-import {Link} from "react-router-dom";
-import Navbar from './Navbar';
-import Footer from './Footer';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 import ColorBox from "./ColorBox";
+import { withStyles } from "@material-ui/styles";
+import styles from "./styles/paletteStyles";
 
-const SingleColorPalette = ({ palette, colorId }) => {
 
-  const [format, setFormat] = useState('hex');
+const SingleColorPalette = ({ palette, colorId, classes }) => {
+  const [format, setFormat] = useState("hex");
 
-  const handleChange = (format)=>{
+  const handleChange = format => {
     setFormat(format);
-  } 
+  };
 
   const getAllColorShades = (pal, colId) => {
     const allShades = pal.colors;
@@ -20,7 +22,7 @@ const SingleColorPalette = ({ palette, colorId }) => {
     }
     return allColors.slice(1);
   };
-  
+
   const shades = getAllColorShades(palette, colorId);
   const drawBoxes = shades.map(shade => (
     <ColorBox
@@ -30,25 +32,25 @@ const SingleColorPalette = ({ palette, colorId }) => {
       isShowFullPalette={false}
     />
   ));
-  
-  const {paletteName, emoji,id} = palette;
-   
+
+  const { paletteName, emoji, id } = palette;
+
   return (
-    <div className="SingleColorPalette Palette">
+    <div className={classes.palette}>
+      <Navbar handleChange={handleChange} isShowLevel={false} />
 
-      <Navbar handleChange={handleChange} isShowLevel={false}/>
-
-      <div className="palette-colors">
+      <div className={classes.paletteColors}>
         {drawBoxes}
-        <div className="goBack Color-box">
-          <Link to={`/palette/${id}`} className="back-button">Go back</Link>
+        <div className={classes.goBack}>
+          <Link to={`/palette/${id}`} className="back-button">
+            Go back
+          </Link>
         </div>
-      </div> 
+      </div>
 
-      <Footer paletteName={paletteName} emoji={emoji}/>
-
+      <Footer paletteName={paletteName} emoji={emoji} />
     </div>
   );
 };
 
-export default SingleColorPalette;
+export default withStyles(styles)(SingleColorPalette);
