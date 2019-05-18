@@ -1,5 +1,4 @@
-
-export default{
+export default {
   root: {
     backgroundColor: "blue",
     height: "100vh",
@@ -18,7 +17,11 @@ export default{
     display: "flex",
     width: "100%",
     justifyContent: "space-between",
-    color: "white"
+    alignItems: "center",
+    color: "white",
+    "& a": {
+      color: "#fff"
+    }
   },
   pallets: {
     boxSizing: "border-box",
