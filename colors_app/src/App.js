@@ -18,7 +18,7 @@ class App extends Component {
     this.setState({ pallets: [...this.state.pallets, palette] });
 
   render() {
-    const { pallets: seedColors } = this.state;
+    const { pallets } = this.state;
 
     return (
       <>
@@ -27,7 +27,11 @@ class App extends Component {
             exact
             path="/palette/new"
             render={routeProps => (
-              <NewPaletteForm save={this.savePalette} {...routeProps} />
+              <NewPaletteForm
+                save={this.savePalette}
+                pallets={pallets}
+                {...routeProps}
+              />
             )}
           />
           {/* main page */}
@@ -35,7 +39,7 @@ class App extends Component {
             exact
             path="/"
             render={routeProps => (
-              <PalleteList pallets={seedColors} {...routeProps} />
+              <PalleteList pallets={pallets} {...routeProps} />
             )}
           />
           {/* multiple palette */}

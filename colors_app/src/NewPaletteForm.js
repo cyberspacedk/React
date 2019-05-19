@@ -80,7 +80,8 @@ class NewPaletteForm extends Component {
     open: true,
     currentColor: "#008080",
     colors: [{ color: "blue", name: "blue" }],
-    newName: ""
+    newColorName: "",
+    newPaletteName: ""
   };
 
   componentDidMount() {
@@ -93,6 +94,12 @@ class NewPaletteForm extends Component {
     ValidatorForm.addValidationRule("isColorUnique", value => {
       return this.state.colors.every(
         ({ color }) => color.toLowerCase() !== this.state.currentColor
+      );
+    });
+
+    ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
+      return this.props.pallets.every(
+        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
       );
     });
   }
@@ -108,24 +115,26 @@ class NewPaletteForm extends Component {
   handleChangeColor = val => {
     this.setState({ currentColor: val });
   };
+
   handleChange = ({ currentTarget }) => {
-    this.setState({ newName: currentTarget.value });
+    this.setState({ [currentTarget.name]: currentTarget.value });
   };
 
   addNewColor = () => {
     const newColor = {
       color: this.state.currentColor,
-      name: this.state.newName
+      name: this.state.newColorName
     };
     const shift = `#${(238743 * Math.random()) | 0}`;
     this.setState({
       colors: [...this.state.colors, newColor],
-      newName: "",
+      newColorName: "",
       currentColor: shift
     });
   };
+
   savePalette = () => {
-    let newName = "New Test Palette";
+    let newName = this.state.newPaletteName;
     const newPalette = {
       paletteName: newName,
       id: newName.toLowerCase().replace(/ /g, "-"),
@@ -137,11 +146,18 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes } = this.props;
-    const { open, currentColor, colors, newName } = this.state;
+    const {
+      open,
+      currentColor,
+      colors,
+      newColorName,
+      newPaletteName
+    } = this.state;
 
     return (
       <div className={classes.root}>
         <CssBaseline />
+
         <AppBar
           position="fixed"
           color="default"
@@ -158,18 +174,35 @@ class NewPaletteForm extends Component {
             >
               <MenuIcon />
             </IconButton>
+
             <Typography variant="h6" color="inherit" noWrap>
               Persistent drawer
             </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.savePalette}
-            >
-              Save Palette
-            </Button>
+
+            <ValidatorForm onSubmit={this.savePalette}>
+              <TextValidator
+                name="newPaletteName"
+                label="Palette Name"
+                value={newPaletteName}
+                onChange={this.handleChange}
+                validators={["required", "isPaletteNameUnique"]}
+                errorMessages={[
+                  "This field is required",
+                  "Such palette already exist"
+                ]}
+              />
+
+              <Button variant="contained" color="primary" type="submit">
+                Save Palette
+              </Button>
+            </ValidatorForm>
+
+            {/* end toolbar */}
           </Toolbar>
+          {/* end appbar */}
         </AppBar>
+
+        {/* Start Drawer */}
         <Drawer
           className={classes.drawer}
           variant="persistent"
@@ -187,6 +220,7 @@ class NewPaletteForm extends Component {
           <Divider />
 
           <Typography variant="h4">Design Yor Palette</Typography>
+
           <div>
             <Button variant="contained" color="secondary">
               Clear Palette
@@ -204,7 +238,8 @@ class NewPaletteForm extends Component {
           {/* add new color form */}
           <ValidatorForm onSubmit={this.addNewColor}>
             <TextValidator
-              value={newName}
+              name="newColorName"
+              value={newColorName}
               onChange={this.handleChange}
               validators={["required", "isColorNameUnique", "isColorUnique"]}
               errorMessages={[
