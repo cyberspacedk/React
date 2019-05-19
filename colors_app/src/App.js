@@ -3,21 +3,34 @@ import { Route, Switch } from "react-router-dom";
 import Palette from "./Palette";
 import PalleteList from "./PalleteList";
 import SingleColorPalette from "./SingleColorPalette";
-import NewPaletteForm from './NewPaletteForm';
+import NewPaletteForm from "./NewPaletteForm";
 import seedColors from "./seedColors";
 import { generatePalette } from "./colorHelpers";
 import "./globalStyles.css";
 
 class App extends Component {
+  state = {
+    pallets: seedColors
+  };
 
-  findPalette = id => seedColors.find(el => el.id === id);
+  findPalette = id => this.state.pallets.find(el => el.id === id);
+  savePalette = palette =>
+    this.setState({ pallets: [...this.state.pallets, palette] });
 
   render() {
+    const { pallets: seedColors } = this.state;
+
     return (
       <>
         <Switch>
-          <Route exact path="/palette/new" render={()=> <NewPaletteForm />} />
-{/* main page */}
+          <Route
+            exact
+            path="/palette/new"
+            render={routeProps => (
+              <NewPaletteForm save={this.savePalette} {...routeProps} />
+            )}
+          />
+          {/* main page */}
           <Route
             exact
             path="/"
@@ -25,7 +38,7 @@ class App extends Component {
               <PalleteList pallets={seedColors} {...routeProps} />
             )}
           />
-{/* multiple palette */}
+          {/* multiple palette */}
           <Route
             exact
             path="/palette/:id"
@@ -37,7 +50,7 @@ class App extends Component {
               />
             )}
           />
-{/* single palette */}
+          {/* single palette */}
           <Route
             exact
             path="/palette/:paletteId/:colorId"
@@ -50,7 +63,7 @@ class App extends Component {
               />
             )}
           />
-{/* ------------------- */}
+          {/* ------------------- */}
         </Switch>
       </>
     );
