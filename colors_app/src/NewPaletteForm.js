@@ -238,6 +238,7 @@ class NewPaletteForm extends Component {
           {/* add new color form */}
           <ValidatorForm onSubmit={this.addNewColor}>
             <TextValidator
+              label="Set name to this color"
               name="newColorName"
               value={newColorName}
               onChange={this.handleChange}
