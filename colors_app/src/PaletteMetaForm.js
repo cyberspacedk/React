@@ -14,6 +14,7 @@ class PaletteMetaForm extends Component {
     open: "form",
     newPaletteName: ""
   };
+
   componentDidMount() {
     ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
       return this.props.pallets.every(
@@ -25,6 +26,7 @@ class PaletteMetaForm extends Component {
   handleChange = ({ currentTarget }) => {
     this.setState({ [currentTarget.name]: currentTarget.value });
   };
+
   showEmoji = () => this.setState({ open: "emoji" });
 
   savePalette = emoji => {
@@ -34,6 +36,7 @@ class PaletteMetaForm extends Component {
     };
     this.props.submit(newPalette);
   };
+
   render() {
     const { newPaletteName, open } = this.state;
     const { hide } = this.props;

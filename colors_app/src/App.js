@@ -6,7 +6,7 @@ import SingleColorPalette from "./SingleColorPalette";
 import NewPaletteForm from "./NewPaletteForm";
 import seedColors from "./seedColors";
 import { generatePalette } from "./colorHelpers";
-import "./globalStyles.css";
+import "./styles/globalStyles.css";
 
 class App extends Component {
   state = {
