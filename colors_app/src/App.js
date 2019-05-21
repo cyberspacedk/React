@@ -18,10 +18,9 @@ class App extends Component {
     this.setState({ pallets: [...this.state.pallets, palette] }, () =>
       localStorage.setItem("palettes", JSON.stringify(this.state.pallets))
     );
-  removePalette = name => {
-    const newPallets = this.state.pallets.filter(
-      pallet => pallet.paletteName.toLowerCase() !== name.toLowerCase()
-    );
+
+  removePalette = id => {
+    const newPallets = this.state.pallets.filter(pallet => pallet.id !== id);
     this.setState({ pallets: newPallets });
   };
 
