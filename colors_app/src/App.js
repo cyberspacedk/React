@@ -21,7 +21,9 @@ class App extends Component {
 
   removePalette = id => {
     const newPallets = this.state.pallets.filter(pallet => pallet.id !== id);
-    this.setState({ pallets: newPallets });
+    this.setState({ pallets: newPallets }, () =>
+      localStorage.setItem("palettes", JSON.stringify(this.state.pallets))
+    );
   };
 
   render() {
