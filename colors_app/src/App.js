@@ -18,6 +18,12 @@ class App extends Component {
     this.setState({ pallets: [...this.state.pallets, palette] }, () =>
       localStorage.setItem("palettes", JSON.stringify(this.state.pallets))
     );
+  removePalette = name => {
+    const newPallets = this.state.pallets.filter(
+      pallet => pallet.paletteName.toLowerCase() !== name.toLowerCase()
+    );
+    this.setState({ pallets: newPallets });
+  };
 
   render() {
     const { pallets } = this.state;
@@ -41,7 +47,11 @@ class App extends Component {
             exact
             path="/"
             render={routeProps => (
-              <PalleteList pallets={pallets} {...routeProps} />
+              <PalleteList
+                pallets={pallets}
+                {...routeProps}
+                remove={this.removePalette}
+              />
             )}
           />
           {/* multiple palette */}
