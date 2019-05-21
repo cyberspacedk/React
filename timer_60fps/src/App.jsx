@@ -32,14 +32,14 @@ class App extends Component {
   componentDidUpdate() {
     let end = this.state.end;
     let start = this.state.start;
-    let delay = 20;
+    let delay = 0;
     let fps = 1000 / 60;
 
     if (start > end * 0.8) delay += 40;
     if (start > end * 0.9) delay += 50;
 
     setTimeout(() => {
-      setTimeout(() => this.fire(), delay);
+      setTimeout(() => requestAnimationFrame(this.fire), delay);
     }, fps);
   }
 
