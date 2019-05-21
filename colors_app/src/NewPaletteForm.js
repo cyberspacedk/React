@@ -8,10 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import { ChromePicker } from "react-color";
 import Button from "@material-ui/core/Button";
 import DraggableColorList from "./DraggableColorList";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { arrayMove } from "react-sortable-hoc";
 
 const drawerWidth = 400;
@@ -19,24 +17,6 @@ const drawerWidth = 400;
 const styles = theme => ({
   root: {
     display: "flex"
-  },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20
   },
   hide: {
     display: "none"
@@ -71,6 +51,24 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
+  },
+  container: {
+    width: "80%",
+    margin: "auto",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  buttons: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    marginTop: "10px"
+  },
+  button: {
+    width: "47%"
   }
 });
 
@@ -81,9 +79,7 @@ class NewPaletteForm extends Component {
 
   state = {
     open: true,
-    currentColor: "#008080",
-    colors: this.props.pallets[0].colors,
-    newColorName: ""
+    colors: this.props.pallets[0].colors
   };
 
   handleDrawerOpen = () => {
@@ -99,18 +95,15 @@ class NewPaletteForm extends Component {
   };
 
   addNewColor = newColor => {
-    const shift = `#${(238743 * Math.random()) | 0}`;
     this.setState({
-      colors: [...this.state.colors, newColor],
-      newColorName: "",
-      currentColor: shift
+      colors: [...this.state.colors, newColor]
     });
   };
 
   savePalette = newPaletteName => {
     const newPalette = {
-      paletteName: newPaletteName,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
+      ...newPaletteName,
+      id: newPaletteName.paletteName.toLowerCase().replace(/ /g, "-"),
       colors: this.state.colors
     };
     this.props.save(newPalette);
@@ -140,13 +133,12 @@ class NewPaletteForm extends Component {
 
   render() {
     const { classes, maxColors, pallets } = this.props;
-    const { open, currentColor, colors, newColorName } = this.state;
+    const { open, colors } = this.state;
     const isFull = colors.length >= maxColors;
     return (
       <div className={classes.root}>
         <PaletteFormNav
           open={open}
-          classes={classes}
           pallets={pallets}
           submit={this.savePalette}
           handleDrawerOpen={this.handleDrawerOpen}
@@ -167,30 +159,35 @@ class NewPaletteForm extends Component {
           </div>
           <Divider />
 
-          <Typography variant="h4">Design Yor Palette</Typography>
+          <div className={classes.container}>
+            <Typography variant="h4">Design Yor Palette</Typography>
 
-          <div>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={this.clearPalette}
-            >
-              Clear Palette
-            </Button>
-            <Button
-              disabled={isFull}
-              variant="contained"
-              color="primary"
-              onClick={this.randomColor}
-            >
-              {isFull ? "Palette Full" : "Random Color"}
-            </Button>
+            <div className={classes.buttons}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={this.clearPalette}
+                className={classes.button}
+              >
+                Clear Palette
+              </Button>
+              <Button
+                disabled={isFull}
+                variant="contained"
+                color="primary"
+                onClick={this.randomColor}
+                className={classes.button}
+              >
+                {isFull ? "Palette Full" : "Random Color"}
+              </Button>
+            </div>
+
+            <ColorPickerForm
+              isFull={isFull}
+              addNewColor={this.addNewColor}
+              colors={colors}
+            />
           </div>
-          <ColorPickerForm
-            isFull={isFull}
-            addNewColor={this.addNewColor}
-            colors={colors}
-          />
         </Drawer>
 
         <main

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
@@ -8,27 +9,58 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
-import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
+import PaletteMetaForm from "./PaletteMetaForm";
+
+const drawerWidth = 400;
+
+const styles = theme => ({
+  root: {
+    display: "flex"
+  },
+  appBar: {
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "64px"
+  },
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    marginLeft: drawerWidth,
+    transition: theme.transitions.create(["margin", "width"], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen
+    })
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 20
+  },
+  navBtns: {
+    marginRight: "1rem"
+  },
+  button: {
+    margin: "0 .5rem"
+  }
+});
 
 class PaletteFormNav extends Component {
   state = {
-    newPaletteName: ""
+    newPaletteName: "",
+    showingForm: false
   };
-  componentDidMount() {
-    ValidatorForm.addValidationRule("isPaletteNameUnique", value => {
-      return this.props.pallets.every(
-        ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
-      );
-    });
-  }
-  handleChange = ({ currentTarget }) => {
-    this.setState({ [currentTarget.name]: currentTarget.value });
-  };
+
+  showFormHandler = () => this.setState({ showingForm: true });
+  hideFormHandler = () => this.setState({ showingForm: false });
+
   render() {
-    const { classes, open, submit, handleDrawerOpen } = this.props;
-    const { newPaletteName } = this.state;
+    const { classes, open, submit, handleDrawerOpen, pallets } = this.props;
+    const { showingForm } = this.state;
     return (
-      <div>
+      <div className={classes.root}>
         <CssBaseline />
         <AppBar
           position="fixed"
@@ -48,36 +80,41 @@ class PaletteFormNav extends Component {
             </IconButton>
 
             <Typography variant="h6" color="inherit" noWrap>
-              Persistent drawer
+              Create a Palette
             </Typography>
-
-            <ValidatorForm onSubmit={() => submit(newPaletteName)}>
-              <TextValidator
-                name="newPaletteName"
-                label="Palette Name"
-                value={newPaletteName}
-                onChange={this.handleChange}
-                validators={["required", "isPaletteNameUnique"]}
-                errorMessages={[
-                  "This field is required",
-                  "Such palette already exist"
-                ]}
-              />
-
-              <Button variant="contained" color="primary" type="submit">
-                Save Palette
-              </Button>
-              <Link to="/">
-                <Button variant="contained" color="secondary ">
-                  Go Back
-                </Button>
-              </Link>
-            </ValidatorForm>
           </Toolbar>
+
+          <div className={classes.navBtns}>
+            <Link to="/">
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
+                Go Back
+              </Button>
+            </Link>
+
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.showFormHandler}
+              className={classes.button}
+            >
+              Save
+            </Button>
+          </div>
         </AppBar>
+        {showingForm && (
+          <PaletteMetaForm
+            submit={submit}
+            pallets={pallets}
+            hide={this.hideFormHandler}
+          />
+        )}
       </div>
     );
   }
 }
 
-export default PaletteFormNav;
+export default withStyles(styles, { withTheme: true })(PaletteFormNav);
