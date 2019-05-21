@@ -1,4 +1,5 @@
 import { DRAWER_WIDTH } from "../constants";
+import sizes from "./mediaSizes";
 
 const drawer = DRAWER_WIDTH;
 
@@ -21,7 +22,10 @@ const styles = theme => ({
     alignItems: "center",
     padding: "0 8px",
     ...theme.mixins.toolbar,
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    [sizes.down("xs")]: {
+      padding: "0 20px"
+    }
   },
   content: {
     flexGrow: 1,

@@ -1,21 +1,33 @@
+import sizes from "./mediaSizes";
+import bg from "./bg.svg";
+
 export default {
   root: {
-    backgroundColor: "blue",
-    height: "100%",
+    minHeight: "100vh",
+    backgroundColor: "#0058a1",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundImage: `url(${bg})`,
+    overflow: "scroll"
   },
   container: {
-    width: "80%",
+    width: "50%",
     display: "flex",
     alignItems: "flex-start",
     flexDirection: "column",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    [sizes.down("lg")]: {
+      width: "80%"
+    },
+    [sizes.down("xs")]: {
+      width: "60%"
+    }
   },
   nav: {
     display: "flex",
     width: "100%",
+    height: "50px",
     justifyContent: "space-between",
     alignItems: "center",
     color: "white",
@@ -28,6 +40,13 @@ export default {
     width: "100%",
     display: "grid",
     gridTemplateColumns: "repeat(3, 30%)",
-    gridGap: "5%"
+    gridGap: "1.5rem",
+    [sizes.down("sm")]: {
+      gridTemplateColumns: "repeat(2, 50%)"
+    },
+    [sizes.down("xs")]: {
+      gridTemplateColumns: "repeat(1, 100%)",
+      gridGap: ".5rem"
+    }
   }
 };

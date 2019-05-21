@@ -1,3 +1,5 @@
+import sizes from "./mediaSizes";
+
 export default {
   navbar: {
     display: "flex",
@@ -34,10 +36,16 @@ export default {
       width: "15px",
       height: "15px",
       marginLeft: "-7px"
+    },
+    [sizes.down("xs")]: {
+      width: "200px"
     }
   },
   selectContainer: {
     marginLeft: "auto",
-    marginRight: "1.5rem"
+    marginRight: "1.5rem",
+    [sizes.down("xs")]: {
+      display: "none"
+    }
   }
 };

@@ -3,6 +3,7 @@ export default {
 
   down(size) {
     const sizes = {
+      xl: "1600px",
       lg: "1199px",
       md: "991px",
       sm: "767px",
