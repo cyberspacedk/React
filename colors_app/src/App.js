@@ -10,12 +10,14 @@ import "./styles/globalStyles.css";
 
 class App extends Component {
   state = {
-    pallets: seedColors
+    pallets: JSON.parse(localStorage.getItem("palettes")) || seedColors
   };
 
   findPalette = id => this.state.pallets.find(el => el.id === id);
   savePalette = palette =>
-    this.setState({ pallets: [...this.state.pallets, palette] });
+    this.setState({ pallets: [...this.state.pallets, palette] }, () =>
+      localStorage.setItem("palettes", JSON.stringify(this.state.pallets))
+    );
 
   render() {
     const { pallets } = this.state;

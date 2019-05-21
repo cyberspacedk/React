@@ -1,13 +1,13 @@
 export default {
   root: {
     backgroundColor: "blue",
-    height: "100vh",
+    height: "100%",
     display: "flex",
     alignItems: "center",
     justifyContent: "center"
   },
   container: {
-    width: "50%",
+    width: "80%",
     display: "flex",
     alignItems: "flex-start",
     flexDirection: "column",
