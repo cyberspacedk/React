@@ -1,11 +1,36 @@
 import React from "react";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
-const Post = () => {
+const Post = ({ match }) => {
+  const {
+    params: { id }
+  } = match;
   return (
-    <div>
-      <h1>hi</h1>
-    </div>
+    <Query
+      query={POST_QUERY}
+      variables={{
+        id
+      }}
+    >
+      {({ data, loading }) => {
+        if (loading) return "Loading ...";
+        const { post } = data;
+        return <h1>{post.title}</h1>;
+      }}
+    </Query>
   );
 };
+
+// Write our query
+const POST_QUERY = gql`
+  query post($id: ID!) {
+    post(where: { id: $id }) {
+      id
+      title
+      body
+    }
+  }
+`;
 
 export default Post;

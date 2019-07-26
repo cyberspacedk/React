@@ -8,7 +8,7 @@ const Posts = () => (
     {({ loading, data: { posts } }) => {
       if (loading) return "Loading...";
       return posts.map(post => (
-        <Link to={`posts/${post.id}`}>
+        <Link to={`post/${post.id}`}>
           <h1 key={(Math.random() * 24235) | 0}>{post.title}</h1>
         </Link>
       ));
